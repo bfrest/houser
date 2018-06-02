@@ -1,0 +1,1 @@
+ALTER TABLE houses ADD COLUMN image text, ADD COLUMN monthly_mortgage int, ADD COLUMN desired_rent int;

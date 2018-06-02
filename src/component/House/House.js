@@ -5,10 +5,17 @@ export default function House(props) {
     <div>
       {props.houseList.map(house => {
         return (
-          <ul>
-            <li>{house.name}</li> <li>{house.price}</li>
-            <button>Delete</button>
-          </ul>
+          <div>
+            <li>name: {house.name}</li>
+            <li>address: {house.address}</li>
+            <button
+              onClick={() => {
+                props.deleteHouse(house.id);
+              }}
+            >
+              Delete
+            </button>
+          </div>
         );
       })}
     </div>
