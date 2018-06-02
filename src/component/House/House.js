@@ -1,9 +1,16 @@
 import React from "react";
 
-export default function House() {
+export default function House(props) {
   return (
     <div>
-      <p>This is the House</p>
+      {props.houseList.map(house => {
+        return (
+          <ul>
+            <li>{house.name}</li> <li>{house.price}</li>
+            <button>Delete</button>
+          </ul>
+        );
+      })}
     </div>
   );
 }
