@@ -17,7 +17,7 @@ app.use(cors());
 
 app.get("/api/inventory", controller.getHouses);
 app.post("/api/house", controller.createHouse);
-app.delete(".api/houses", controller.deleteHouseById);
+app.delete("/api/houses", controller.deleteHouseById);
 
 app.listen(3001, () => {
   console.log("listenin' on 3001");

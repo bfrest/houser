@@ -1,9 +1,12 @@
 import React from "react";
+import "./Header.css";
+import logo from "./house.js";
 
 export default function Header() {
   return (
-    <div>
-      <p>This is the Header</p>
+    <div className="header-wrapper">
+      <img src={logo} alt="logo" />
+      <h2>HOUSER</h2>
     </div>
   );
 }

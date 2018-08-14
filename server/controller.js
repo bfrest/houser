@@ -11,8 +11,7 @@ module.exports = {
   createHouse: (req, res) => {
     const dbInstance = req.app.get("db");
 
-    // I'm using req.query to get the parameters from the url
-    const { name, address, city, state, zipcode } = req.query;
+    const { name, address, city, state, zipcode } = req.body;
 
     dbInstance
       .createHouse([name, address, city, state, zipcode])
@@ -23,6 +22,7 @@ module.exports = {
   deleteHouseById: (req, res) => {
     const dbInstance = req.app.get("db");
     const { id } = req.query;
+    console.log(req.query);
 
     dbInstance
       .deleteHouseById([id])
