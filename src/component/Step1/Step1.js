@@ -4,63 +4,58 @@ import { connect } from "react-redux";
 import { updateFirstStep } from "../../ducks/reducer.js";
 
 class Step1 extends Component {
-  constructor() {
-    super();
-    // ! make sure you don't have copy of this state in step3
+  constructor(props) {
+    super(props);
     this.state = {
       name: "",
       address: "",
       city: "",
       state: "",
-      zipcode: ""
+      zipcode: 0
     };
     this.handleForm = this.handleForm.bind(this);
   }
 
   handleForm(event) {
-    // instead of using a function for each input
-    // i'm using the name of the form to set it to state!
     this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
-    const { updateFirstStep } = this.props;
     return (
       <div>
+        {console.log(this.props)}
         <h1>Add New Listing</h1>
         <form>
-          <input placeholder="Name" name="name" onChange={this.handleForm} />
-          <input placeholder="Address" name="address" onChange={this.handleForm} />
-          <input placeholder="City" name="city" onChange={this.handleForm} />
-          <input placeholder="State" name="state" onChange={this.handleForm} />
-          <input placeholder="Zipcode" name="zipcode" onChange={this.handleForm} />
+          <label htmlFor="name">Name</label>
+          <input name="name" onChange={this.handleForm} />
+          <label htmlFor="address">Address</label>
+          <input name="address" onChange={this.handleForm} />
+          <label htmlFor="city">City</label>
+          <input name="city" onChange={this.handleForm} />
+          <label htmlFor="state">State</label>
+          <input name="state" onChange={this.handleForm} />
+          <label htmlFor="zipcode">Zipcode</label>
+          <input name="zipcode" onChange={this.handleForm} />
         </form>
         <Link to="/wizard/step2">
-          {/* Make it so this button fires off the updateFirstStep function and gets all the state */}
-          <button onClick={this.props.stepOneInputs}>Next Step</button>
+          <button onClick={updateFirstStep}>Next Step</button>
         </Link>
-
-        {// the props are coming from the redux state from the map state function below
-        console.log(this.props)}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { name, address, city, zipcode } = state;
   return {
-    name,
-    address,
-    city,
+    name: state.name,
+    address: state.address,
+    city: state.city,
     state: state.state,
-    zipcode
+    zipcode: state.zipcode
   };
 }
 
 export default connect(
   mapStateToProps,
-  {
-    updateFirstStep
-  }
+  { updateFirstStep }
 )(Step1);

@@ -10,6 +10,7 @@ module.exports = {
 
   createHouse: (req, res) => {
     const dbInstance = req.app.get("db");
+    console.log(req.body);
 
     const { name, address, city, state, zipcode } = req.body;
 
@@ -22,7 +23,6 @@ module.exports = {
   deleteHouseById: (req, res) => {
     const dbInstance = req.app.get("db");
     const { id } = req.query;
-    console.log(req.query);
 
     dbInstance
       .deleteHouseById([id])

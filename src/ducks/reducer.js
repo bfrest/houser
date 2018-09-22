@@ -1,23 +1,28 @@
 const initialState = {
-  name: "reduxname",
-  address: "reduxaddress",
-  city: "reduxcity",
-  state: "rsate",
-  zipcode: "rz",
-  image_url: "ri",
-  mortgage: "rm",
-  desiredRent: "rr"
+  name: "",
+  address: "",
+  city: "",
+  state: "",
+  zipcode: 0,
+  image: "",
+  monthly_mortgage: 0,
+  desired_rent: 0
 };
 
 const UPDATE_FIRST_STEP = "UPDATE_FIRST_STEP";
-// const UPDATE_IMAGE_URL = "UPDATE_IMAGE_URL";
-// const UPDATE_MORTGAGE = "UPDATE_MORTGAGE";
-// const UPDATE_DESIRED_RENT = "UPDATE_DESIRED_RENT";
+const UPDATE_SECOND_STEP = "UPDATE_SECOND_STEP";
+const UPDATE_THIRD_STEP = "UPDATE_THIRD_STEP";
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_FIRST_STEP:
-      return Object.assign({}, state, { name: action.payload });
+      return Object.assign({}, state, { name: action.payload, address: action.payload, city: action.payload, state: action.payload, zipcode: action.payload });
+
+    case UPDATE_SECOND_STEP:
+      return Object.assign({}, state, { image: action.payload });
+
+    case UPDATE_THIRD_STEP:
+      return Object.assign({}, state, { monthly_mortgage: action.payload, desired_rent: action.payload });
 
     default:
       return state;
@@ -35,6 +40,25 @@ export function updateFirstStep(name, address, city, state, zipcode) {
       city,
       state,
       zipcode
+    }
+  };
+}
+
+export function updateSecondStep(image) {
+  return {
+    type: UPDATE_SECOND_STEP,
+    payload: {
+      image
+    }
+  };
+}
+
+export function updateThirdStep(monthly_mortgage, desired_rent) {
+  return {
+    type: UPDATE_THIRD_STEP,
+    payload: {
+      monthly_mortgage,
+      desired_rent
     }
   };
 }

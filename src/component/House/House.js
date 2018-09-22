@@ -6,7 +6,8 @@ export default function House(props) {
     <div className="house-wrapper">
       {props.houseList.map(house => {
         return (
-          <div className="list-item">
+          <div className="list-item" key={house.id}>
+            <img alt="house" src={house.image} />
             <li>Name: {house.name}</li>
             <li>Address: {house.address}</li>
             <li>City: {house.city}</li>
@@ -23,7 +24,6 @@ export default function House(props) {
           </div>
         );
       })}
-      {console.log(props.houseList)}
     </div>
   );
 }
