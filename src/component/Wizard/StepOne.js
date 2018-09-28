@@ -21,6 +21,8 @@ class StepOne extends Component {
   }
 
   render() {
+    console.log(this.props);
+    const { name, address, city, zipcode } = this.state;
     return (
       <div>
         <input name="name" onChange={e => this.handleForm(e)} />
@@ -29,7 +31,7 @@ class StepOne extends Component {
         <input name="state" onChange={e => this.handleForm(e)} />
         <input name="zipcode" onChange={e => this.handleForm(e)} />
         <Link to="/wizard/step2">
-          <button onClick={updateStep1}>Next Step</button>
+          <button onClick={this.props.updateStep1}>Next Step</button>
         </Link>
       </div>
     );
@@ -46,9 +48,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  // not sure what to do in here
-};
+// const mapDispatchToProps = () => {
+//   return { updateStep1 };
+// };
 
 export default connect(
   mapStateToProps,

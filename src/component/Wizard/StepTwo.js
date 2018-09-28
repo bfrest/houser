@@ -38,7 +38,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { updateStep2 }
-)(StepTwo);
+// const mapDispatchToProps = () => {
+//   return { updateStep2 };
+// };
+
+export default connect(mapStateToProps)(StepTwo);

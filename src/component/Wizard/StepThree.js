@@ -40,14 +40,16 @@ class StepThree extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    monthly_mortgage: state.monthly_mortgage,
-    desired_rent: state.desired_rent
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     monthly_mortgage: state.monthly_mortgage,
+//     desired_rent: state.desired_rent
+//   };
+// };
 
-export default connect(
-  mapStateToProps,
-  { updateStep3 }
-)(StepThree);
+// const mapDispatchToProps = () => {
+//   return { updateStep3 };
+// };
+
+//export default connect(mapStateToProps)(StepThree);
+export default StepThree;

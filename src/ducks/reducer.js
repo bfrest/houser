@@ -15,9 +15,6 @@ const UPDATE_STEP3 = "UPDATE_STEP3";
 
 export default function reducuer(state = initialState, action) {
   switch (action.type) {
-    default:
-      return state;
-
     case UPDATE_STEP1:
       return Object.assign({}, state, { name: action.payload, address: action.payload, city: action.payload, state: action.payload, zipcode: action.payload });
 
@@ -26,6 +23,8 @@ export default function reducuer(state = initialState, action) {
 
     case UPDATE_STEP3:
       return Object.assign({}, state, { monthly_mortgage: action.payload, desired_rent: action.payload });
+    default:
+      return state;
   }
 }
 
