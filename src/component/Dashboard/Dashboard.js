@@ -1,52 +1,43 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import "./Dashboard.css";
-
-// components
 import House from "../House/House.js";
+import axios from "axios";
 
 class Dashboard extends Component {
   constructor() {
     super();
-
     this.state = {
-      allHouses: []
+      houses: []
     };
-    this.deleteHouseById = this.deleteHouseById.bind(this);
     this.getAllHouses = this.getAllHouses.bind(this);
+    this.deleteHouseById = this.deleteHouseById.bind(this);
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3001/api/inventory").then(res => {
-      this.setState({ allHouses: res.data });
-    });
+    this.getAllHouses();
   }
 
   getAllHouses() {
-    axios.get("http://localhost:3001/api/inventory").then(res => {
-      this.setState({ allHouses: res.data });
+    axios.get("http://localhost:3001/api/getHouses").then(res => {
+      this.setState({ houses: [...res.data] });
     });
   }
 
-  deleteHouseById(id) {
-    axios.delete(`http://localhost:3001/api/houses?id=${id}`).then(() => this.getAllHouses());
+  async deleteHouseById(id) {
+    await axios.delete(`http://localhost:3001/api/deleteHouse?id=${id}`).then();
+    this.getAllHouses();
   }
 
   render() {
-    const { allHouses } = this.state;
-
     return (
-      <div className="dashboard-wrapper">
+      <div>
         <Link to="/wizard/step1">
           <button>Add New Property</button>
         </Link>
 
-        <Link to="/">
-          <button>Cancel</button>
-        </Link>
-        <h2>House Listings</h2>
-        <House houseList={allHouses} getHouses={this.componentDidMount} deleteHouse={this.deleteHouseById} />
+        {this.state.houses.map(house => {
+          return <House houseInfo={house} key={house.id} delete={this.deleteHouseById} />;
+        })}
       </div>
     );
   }

@@ -15,9 +15,9 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/api/inventory", controller.getHouses);
-app.post("/api/house", controller.createHouse);
-app.delete("/api/houses", controller.deleteHouseById);
+app.get("/api/getHouses", controller.getHouses);
+app.post("/api/createHouse", controller.createHouse);
+app.delete("/api/deleteHouse", controller.deleteHouseById);
 
 app.listen(3001, () => {
   console.log("listenin' on 3001");

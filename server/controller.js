@@ -10,14 +10,13 @@ module.exports = {
 
   createHouse: (req, res) => {
     const dbInstance = req.app.get("db");
-    console.log(req.body);
 
     const { name, address, city, state, zipcode } = req.body;
 
     dbInstance
       .createHouse([name, address, city, state, zipcode])
       .then(() => res.status(200).send())
-      .catch(() => res.status(500).send());
+      .catch(err => res.status(500).send(err));
   },
 
   deleteHouseById: (req, res) => {

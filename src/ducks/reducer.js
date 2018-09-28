@@ -9,31 +9,29 @@ const initialState = {
   desired_rent: 0
 };
 
-const UPDATE_FIRST_STEP = "UPDATE_FIRST_STEP";
-const UPDATE_SECOND_STEP = "UPDATE_SECOND_STEP";
-const UPDATE_THIRD_STEP = "UPDATE_THIRD_STEP";
+const UPDATE_STEP1 = "UPDATE_STEP1";
+const UPDATE_STEP2 = "UPDATE_STEP2";
+const UPDATE_STEP3 = "UPDATE_STEP3";
 
-export default function reducer(state = initialState, action) {
+export default function reducuer(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_FIRST_STEP:
-      return Object.assign({}, state, { name: action.payload, address: action.payload, city: action.payload, state: action.payload, zipcode: action.payload });
-
-    case UPDATE_SECOND_STEP:
-      return Object.assign({}, state, { image: action.payload });
-
-    case UPDATE_THIRD_STEP:
-      return Object.assign({}, state, { monthly_mortgage: action.payload, desired_rent: action.payload });
-
     default:
       return state;
+
+    case UPDATE_STEP1:
+      return Object.assign({}, state, { name: action.payload, address: action.payload, city: action.payload, state: action.payload, zipcode: action.payload });
+
+    case UPDATE_STEP2:
+      return Object.assign({}, state, { image: action.payload });
+
+    case UPDATE_STEP3:
+      return Object.assign({}, state, { monthly_mortgage: action.payload, desired_rent: action.payload });
   }
 }
 
-export function updateFirstStep(name, address, city, state, zipcode) {
-  //const { name, address, city, zipcode } = state;
-
+export function updateStep1(name, address, city, state, zipcode) {
   return {
-    type: UPDATE_FIRST_STEP,
+    type: UPDATE_STEP1,
     payload: {
       name,
       address,
@@ -44,18 +42,18 @@ export function updateFirstStep(name, address, city, state, zipcode) {
   };
 }
 
-export function updateSecondStep(image) {
+export function updateStep2(image) {
   return {
-    type: UPDATE_SECOND_STEP,
+    type: UPDATE_STEP2,
     payload: {
       image
     }
   };
 }
 
-export function updateThirdStep(monthly_mortgage, desired_rent) {
+export function updateStep3(monthly_mortgage, desired_rent) {
   return {
-    type: UPDATE_THIRD_STEP,
+    type: UPDATE_STEP3,
     payload: {
       monthly_mortgage,
       desired_rent

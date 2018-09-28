@@ -1,37 +1,44 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { updateSecondStep } from "../../ducks/reducer.js";
+import updateStep2 from "../../ducks/reducer.js";
 
-class Step2 extends Component {
+class StepTwo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       image: ""
     };
   }
+
+  handleForm(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
     return (
       <div>
-        <input placeholder="image url" name="image" />
+        <input type="url" name="image" onChange={e => this.handleForm(e)} />
+
         <Link to="/wizard/step1">
-          <button onClick={updateSecondStep}>Previous Step</button>
+          <button onClick={updateStep2}>Previous Step</button>
         </Link>
+
         <Link to="/wizard/step3">
-          <button onClick={updateSecondStep}>Next Step</button>
+          <button onClick={updateStep2}>Next Step</button>
         </Link>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     image: state.image
   };
-}
+};
 
 export default connect(
   mapStateToProps,
-  { updateSecondStep }
-)(Step2);
+  { updateStep2 }
+)(StepTwo);

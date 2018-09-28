@@ -1,0 +1,56 @@
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import updateStep1 from "../../ducks/reducer.js";
+
+class StepOne extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      address: "",
+      city: "",
+      state: "",
+      zipcode: ""
+    };
+    this.handleForm = this.handleForm.bind(this);
+  }
+
+  handleForm(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  render() {
+    return (
+      <div>
+        <input name="name" onChange={e => this.handleForm(e)} />
+        <input name="address" onChange={e => this.handleForm(e)} />
+        <input name="city" onChange={e => this.handleForm(e)} />
+        <input name="state" onChange={e => this.handleForm(e)} />
+        <input name="zipcode" onChange={e => this.handleForm(e)} />
+        <Link to="/wizard/step2">
+          <button onClick={updateStep1}>Next Step</button>
+        </Link>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    name: state.name,
+    address: state.address,
+    city: state.city,
+    state: state.state,
+    zipcode: state.zipcode
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  // not sure what to do in here
+};
+
+export default connect(
+  mapStateToProps,
+  { updateStep1 }
+)(StepOne);

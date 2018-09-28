@@ -1,10 +1,10 @@
-.list-item {
+.house {
   background: #dedede;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.list-item li {
+.house p {
   list-style-type: none;
 }
 
