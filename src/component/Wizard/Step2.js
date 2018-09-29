@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { updateSecondStep } from "../../ducks/reducer.js";
+import { updateImage } from "../../ducks/reducer.js";
 
 class Step2 extends Component {
   constructor(props) {
@@ -11,14 +11,15 @@ class Step2 extends Component {
     };
   }
   render() {
+    const { updateImage, image } = this.props;
     return (
       <div>
-        <input placeholder="image url" name="image" />
+        <input placeholder="image url" name="image" onChange={e => updateImage(e.target.value)} defaultValue={image} />
         <Link to="/wizard/step1">
-          <button onClick={updateSecondStep}>Previous Step</button>
+          <button>Previous Step</button>
         </Link>
         <Link to="/wizard/step3">
-          <button onClick={updateSecondStep}>Next Step</button>
+          <button>Next Step</button>
         </Link>
       </div>
     );
@@ -33,5 +34,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { updateSecondStep }
+  { updateImage }
 )(Step2);

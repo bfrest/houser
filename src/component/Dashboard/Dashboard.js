@@ -45,6 +45,7 @@ class Dashboard extends Component {
         <Link to="/">
           <button>Cancel</button>
         </Link>
+
         <h2>House Listings</h2>
         <House houseList={allHouses} getHouses={this.componentDidMount} deleteHouse={this.deleteHouseById} />
       </div>

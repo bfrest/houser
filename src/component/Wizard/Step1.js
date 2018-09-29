@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { updateFirstStep } from "../../ducks/reducer.js";
+import { updateName, updateAddress, updateCity, updateState, updateZipcode } from "../../ducks/reducer.js";
 
 class Step1 extends Component {
   constructor(props) {
@@ -21,24 +21,25 @@ class Step1 extends Component {
   }
 
   render() {
+    const { updateName, updateAddress, updateCity, updateState, updateZipcode } = this.props;
+    console.log(this.props);
     return (
       <div>
-        {console.log(this.props)}
         <h1>Add New Listing</h1>
         <form>
           <label htmlFor="name">Name</label>
-          <input name="name" onChange={this.handleForm} />
+          <input name="name" onChange={e => updateName(e.target.value)} defaultValue={this.props.name} />
           <label htmlFor="address">Address</label>
-          <input name="address" onChange={this.handleForm} />
+          <input name="address" onChange={e => updateAddress(e.target.value)} defaultValue={this.props.address} />
           <label htmlFor="city">City</label>
-          <input name="city" onChange={this.handleForm} />
+          <input name="city" onChange={e => updateCity(e.target.value)} defaultValue={this.props.city} />
           <label htmlFor="state">State</label>
-          <input name="state" onChange={this.handleForm} />
+          <input name="state" onChange={e => updateState(e.target.value)} defaultValue={this.props.state} />
           <label htmlFor="zipcode">Zipcode</label>
-          <input name="zipcode" onChange={this.handleForm} />
+          <input name="zipcode" onChange={e => updateZipcode(e.target.value)} defaultValue={this.props.zipcode} />
         </form>
         <Link to="/wizard/step2">
-          <button onClick={updateFirstStep}>Next Step</button>
+          <button>Next Step</button>
         </Link>
       </div>
     );
@@ -57,5 +58,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { updateFirstStep }
+  { updateName, updateAddress, updateCity, updateState, updateZipcode }
 )(Step1);
