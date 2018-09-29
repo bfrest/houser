@@ -4,6 +4,7 @@ const cors = require("cors");
 const massive = require("massive");
 require("dotenv").config();
 const controller = require("./controller.js");
+const session = require("express-session");
 
 const app = express();
 massive(process.env.CONNECTION_STRING).then(dbInstance => {
@@ -14,6 +15,13 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
 app.get("/api/inventory", controller.getHouses);
 app.post("/api/house", controller.createHouse);
