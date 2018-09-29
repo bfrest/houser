@@ -15,6 +15,7 @@ class Dashboard extends Component {
     };
     this.deleteHouseById = this.deleteHouseById.bind(this);
     this.getAllHouses = this.getAllHouses.bind(this);
+    this.getHousesById = this.getHousesById.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +26,12 @@ class Dashboard extends Component {
 
   getAllHouses() {
     axios.get("http://localhost:3001/api/inventory").then(res => {
+      this.setState({ allHouses: res.data });
+    });
+  }
+
+  getHousesById() {
+    axios.get("http://localhost:3001/api/getHousesById").then(res => {
       this.setState({ allHouses: res.data });
     });
   }
@@ -42,9 +49,7 @@ class Dashboard extends Component {
           <button>Add New Property</button>
         </Link>
 
-        <Link to="/">
-          <button>Cancel</button>
-        </Link>
+        <button onClick={this.getHousesById}>Get Your Homes</button>
 
         <h2>House Listings</h2>
         <House houseList={allHouses} getHouses={this.componentDidMount} deleteHouse={this.deleteHouseById} />

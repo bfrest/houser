@@ -22,7 +22,7 @@ class Step3 extends Component {
 
   handleRecommendedRent(mortgage) {
     let timesBy25 = mortgage * 0.25;
-    let recommended = timesBy25 + parseInt(mortgage);
+    let recommended = timesBy25 + parseInt(mortgage, 10);
 
     // if the input value of monthly mortgage is empty or a string
     // it will default to 0

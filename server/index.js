@@ -24,7 +24,10 @@ app.use(
 );
 
 app.get("/api/inventory", controller.getHouses);
+app.get("/api/getHousesById", controller.getHomesByUserId);
+
 app.post("/api/house", controller.createHouse);
+
 app.delete("/api/houses", controller.deleteHouseById);
 
 app.listen(3001, () => {
