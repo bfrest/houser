@@ -9,22 +9,48 @@ class Step3 extends Component {
     super(props);
     this.state = {
       monthly_mortgage: 0,
-      desired_rent: 0
+      desired_rent: 0,
+      recommended_rent: 0
     };
     this.createHouse = this.createHouse.bind(this);
   }
 
   createHouse() {
-    const { name, address, city, state, zipcode } = this.state;
-    axios.post("http://localhost:3001/api/house", { name, address, city, state, zipcode });
+    const { name, address, city, state, zipcode, image, monthly_mortgage, desired_rent } = this.state;
+    axios.post("http://localhost:3001/api/house", { name, address, city, state, zipcode, image, monthly_mortgage, desired_rent });
+  }
+
+  handleRecommendedRent(mortgage) {
+    let timesBy25 = mortgage * 0.25;
+    let recommended = timesBy25 + parseInt(mortgage);
+
+    // if the input value of monthly mortgage is empty or a string
+    // it will default to 0
+    if (mortgage) {
+      this.setState({ recommended_rent: recommended });
+    } else {
+      this.setState({ recommended_rent: 0 });
+    }
   }
 
   render() {
-    const { updateDesiredRent, updateMonthlyMortgage, desired_rent, monthly_mortgage } = this.props;
-
+    const { desired_rent, monthly_mortgage, updateDesiredRent, updateMonthlyMortgage } = this.props;
+    console.log(this.props);
     return (
       <div>
-        <input name="monthly_mortgage" placeholder="monthly mortgage amount" onChange={e => updateMonthlyMortgage(e.target.value)} defaultValue={monthly_mortgage} />
+        <div>
+          <p>Recommended rent: ${this.state.recommended_rent}</p>
+        </div>
+        <input
+          name="monthly_mortgage"
+          type="number"
+          placeholder="monthly mortgage amount"
+          onChange={e => {
+            updateMonthlyMortgage(e.target.value);
+            this.handleRecommendedRent(e.target.value);
+          }}
+          defaultValue={monthly_mortgage}
+        />
         <input name="desired_rent" placeholder="desired monthly rent" onChange={e => updateDesiredRent(e.target.value)} defaultValue={desired_rent} />
 
         <Link to="/wizard/step2">
@@ -47,7 +73,12 @@ function mapStateToProps(state) {
   };
 }
 
+const mapDispatchToProps = {
+  updateMonthlyMortgage: updateMonthlyMortgage,
+  updateDesiredRent: updateDesiredRent
+};
+
 export default connect(
   mapStateToProps,
-  { updateMonthlyMortgage, updateDesiredRent }
+  mapDispatchToProps
 )(Step3);

@@ -12,10 +12,10 @@ module.exports = {
     const dbInstance = req.app.get("db");
     console.log(req.body);
 
-    const { name, address, city, state, zipcode } = req.body;
+    const { name, address, city, state, zipcode, image, monthly_mortgage, desired_rent } = req.body;
 
     dbInstance
-      .createHouse([name, address, city, state, zipcode])
+      .createHouse([name, address, city, state, zipcode, image, monthly_mortgage, desired_rent])
       .then(() => res.status(200).send())
       .catch(() => res.status(500).send());
   },

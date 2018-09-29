@@ -9,9 +9,6 @@ const initialState = {
   desired_rent: 0
 };
 
-// const UPDATE_FIRST_STEP = "UPDATE_FIRST_STEP";
-// const UPDATE_SECOND_STEP = "UPDATE_SECOND_STEP";
-// const UPDATE_THIRD_STEP = "UPDATE_THIRD_STEP";
 const UPDATE_NAME = "UPDATE_NAME";
 const UPDATE_ADDRESS = "UPDATE_ADDRESS";
 const UPDATE_CITY = "UPDATE_CITY";

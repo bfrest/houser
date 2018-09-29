@@ -32,7 +32,11 @@ function mapStateToProps(state) {
   };
 }
 
+const mapDispatchToProps = {
+  updateImage: updateImage
+};
+
 export default connect(
   mapStateToProps,
-  { updateImage }
+  mapDispatchToProps
 )(Step2);

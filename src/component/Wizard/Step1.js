@@ -56,7 +56,15 @@ function mapStateToProps(state) {
   };
 }
 
+const mapDispatchToProps = {
+  updateName: updateName,
+  updateAddress: updateAddress,
+  updateCity: updateCity,
+  updateState: updateState,
+  updateZipcode: updateZipcode
+};
+
 export default connect(
   mapStateToProps,
-  { updateName, updateAddress, updateCity, updateState, updateZipcode }
+  mapDispatchToProps
 )(Step1);
