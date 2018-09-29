@@ -16,7 +16,7 @@ class Step3 extends Component {
   }
 
   createHouse() {
-    const { name, address, city, state, zipcode, image, monthly_mortgage, desired_rent } = this.state;
+    const { name, address, city, state, zipcode, image, monthly_mortgage, desired_rent } = this.props;
     axios.post("http://localhost:3001/api/house", { name, address, city, state, zipcode, image, monthly_mortgage, desired_rent });
   }
 
@@ -34,8 +34,7 @@ class Step3 extends Component {
   }
 
   render() {
-    const { desired_rent, monthly_mortgage, updateDesiredRent, updateMonthlyMortgage } = this.props;
-    console.log(this.props);
+    const { updateDesiredRent, updateMonthlyMortgage, desired_rent, monthly_mortgage } = this.props;
     return (
       <div>
         <div>
@@ -58,8 +57,7 @@ class Step3 extends Component {
         </Link>
 
         <Link to="/">
-          {/*need to create the house after they hit the button*/}
-          <button>Complete</button>
+          <button onClick={this.createHouse}>Complete</button>
         </Link>
       </div>
     );
@@ -69,7 +67,13 @@ class Step3 extends Component {
 function mapStateToProps(state) {
   return {
     monthly_mortgage: state.monthly_mortgage,
-    desired_rent: state.desired_rent
+    desired_rent: state.desired_rent,
+    name: state.name,
+    address: state.address,
+    city: state.city,
+    state: state.state,
+    zipcode: state.zipcode,
+    image: state.image
   };
 }
 

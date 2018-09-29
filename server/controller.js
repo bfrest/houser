@@ -10,8 +10,6 @@ module.exports = {
 
   createHouse: (req, res) => {
     const dbInstance = req.app.get("db");
-    console.log(req.body);
-
     const { name, address, city, state, zipcode, image, monthly_mortgage, desired_rent } = req.body;
 
     dbInstance
