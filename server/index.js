@@ -17,9 +17,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(
   session({
+    name: "houser_demo",
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false
   })
 );
 

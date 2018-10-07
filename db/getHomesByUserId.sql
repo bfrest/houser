@@ -1,1 +1,1 @@
-SELECT * FROM houses WHERE userId = $1;
+SELECT * FROM houses WHERE userid = 'vc0Qscy-BWrjKTGI5-JUU-HunJomg-vd';
