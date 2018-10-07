@@ -38,5 +38,15 @@ module.exports = {
       .then(homes => res.status(200).send(homes))
       .catch(() => res.status(500).send());
     console.log(userId);
+  },
+
+  getByRent: (req, res) => {
+    const dbInstance = req.app.get("db");
+    const { rent } = req.query;
+
+    dbInstance
+      .getByRent([rent])
+      .then(homes => res.status(200).send(homes))
+      .catch(() => res.status(500).send());
   }
 };
